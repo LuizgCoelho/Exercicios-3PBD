@@ -46,6 +46,7 @@ CREATE TABLE Usuario (
 CREATE TABLE Funcionario (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
+    valor DECIMAL(10, 2),
     telefone VARCHAR(20),
     endereco VARCHAR(255),
     funcao VARCHAR(50),
