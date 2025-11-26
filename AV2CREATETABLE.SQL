@@ -130,3 +130,8 @@ CREATE TABLE Relatorio (
     observacoes TEXT,
     data_criacao DATETIME
 );
+
+DROP TABLE Relatorio;
+DROP TABLE Pagamento;
+
+DROP DATABASE falls_car;
