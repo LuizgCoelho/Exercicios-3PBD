@@ -1,3 +1,18 @@
+SELECT
+    V.placa AS Placa,
+    V.marca AS Marca,
+    V.modelo AS Modelo,
+    GC.nome AS Grupo_Carro,
+    A.nome AS Agencia_Localizacao,
+    V.diaria AS Valor_Diaria,
+    V.km AS Quilometragem,
+    V.status AS Status
+FROM Veiculo V
+INNER JOIN Agencias A ON V.id_agencia = A.id
+INNER JOIN Grupo_carro GC ON V.id_grupo_carro = GC.id
+WHERE V.status = 'Livre'
+ORDER BY Agencia_Localizacao, Grupo_Carro;
+
 
 SELECT
     C.id AS Contrato_ID,
