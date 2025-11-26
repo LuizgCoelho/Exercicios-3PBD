@@ -95,8 +95,7 @@ CREATE TABLE Agendamento (
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id),
     FOREIGN KEY (id_grupo_carro) REFERENCES Grupo_carro(id),
     FOREIGN KEY (id_agencia_retirada) REFERENCES Agencias(id),
-    FOREIGN KEY (id_agencia_devolucao) REFERENCES Agencias(id),
-    FOREIGN KEY (id_veiculo) REFERENCES Veiculo(id)
+    FOREIGN KEY (id_agencia_devolucao) REFERENCES Agencias(id)
 );
 
 CREATE TABLE Contrato (
