@@ -39,11 +39,11 @@ INSERT INTO Checklist (id_veiculo, id_funcionario, tem_seguro, data_checklist, o
 
 INSERT INTO Agendamento (id_usuario, id_grupo_carro, id_agencia_retirada, id_agencia_devolucao, retirada, devolucao, status) VALUES
 (1, 3, 1, 2, '2025-12-01 10:00:00', '2025-01-14 10:00:00', 'Confirmada'),
-(1, 3, 2, 2, '2026-01-15 10:00:00', '2026-01-12 10:00:00', 'Confirmada');
+(1, 3, 2, 2, '2026-01-15 10:00:00', '2026-01-12 10:00:00', 'Confirmada'),
 (2, 2, 2, 2, '2026-01-14 10:00:00', '2026-01-11 10:00:00', 'Confirmada');
 
 INSERT INTO Contrato (id_agendamento, id_veiculo, id_func_motorista, termos, status, periodo, data_inicio, data_fim) VALUES
-(1, 2, 2, 'Locação Padrão', 'Ativo', 7, '2025-12-01', '2025-12-08');
+(1, 2, 2, 'Locação Padrão', 'Ativo', 7, '2025-12-01', '2025-12-08'),
 (3, 3, 2, 'Contrato Intermediário', 'Ativo', 3, '2026-01-11', '2026-01-14');
 
 INSERT INTO Pagamento (id_contrato, forma, data, status, valor, nota_fiscal) VALUES
