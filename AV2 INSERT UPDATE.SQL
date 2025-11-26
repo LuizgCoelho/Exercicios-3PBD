@@ -44,7 +44,7 @@ INSERT INTO Agendamento (id_usuario, id_grupo_carro, id_agencia_retirada, id_age
 
 INSERT INTO Contrato (id_agendamento, id_veiculo, id_func_motorista, termos, status, periodo, data_inicio, data_fim) VALUES
 (1, 2, 2, 'Locação Padrão', 'Ativo', 7, '2025-12-01', '2025-12-08'),
-(3, 3, 2, 'Contrato Intermediário', 'Ativo', 3, '2026-01-11', '2026-01-14');
+(2, 3, 2, 'Contrato Intermediário', 'Ativo', 3, '2026-01-11', '2026-01-14');
 
 INSERT INTO Pagamento (id_contrato, forma, data, status, valor, nota_fiscal) VALUES
 (1, 'Cartão de Crédito', NOW(), 'Aprovado', 2450.00, 'NF-2025-001'),
