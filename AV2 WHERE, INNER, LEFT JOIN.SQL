@@ -1,32 +1,49 @@
-SELECT
-    V.placa AS Placa,
-    V.marca AS Marca,
-    V.modelo AS Modelo,
-    GC.nome AS Grupo_Carro,
-    A.nome AS Agencia_Localizacao,
-    V.diaria AS Valor_Diaria,
-    V.km AS Quilometragem,
-    V.status AS Status
-FROM Veiculo V
-INNER JOIN Agencias A ON V.id_agencia = A.id
-INNER JOIN Grupo_carro GC ON V.id_grupo_carro = GC.id
-WHERE V.status = 'Livre'
-ORDER BY Agencia_Localizacao, Grupo_Carro;
-
+SELECT 
+    v.id,
+    v.placa,
+    v.marca,
+    v.modelo,
+    v.tipo,
+    v.diaria,
+    g.nome AS grupo,
+    a.nome AS agencia
+FROM Veiculo v
+JOIN Grupo_carro g ON v.id_grupo_carro = g.id
+JOIN Agencias a ON v.id_agencia = a.id
+WHERE v.status = 'Livre';
 
 SELECT
-    C.id AS Contrato_ID,
-    U.nome AS Cliente,
-    V.placa AS Placa_Veiculo,
-    P.valor AS Valor_Pago,
-    C.data_inicio,
-    P.status AS Status_Pagamento
-FROM Contrato C
-INNER JOIN Pagamento P ON C.id = P.id_contrato 
-INNER JOIN Agendamento A ON C.id_agendamento = A.id
-INNER JOIN Usuario U ON A.id_usuario = U.id
-INNER JOIN Veiculo V ON C.id_veiculo = V.id
-WHERE C.status = 'Ativo';
+    ag.id AS id_agendamento,
+    u.nome AS cliente,
+    g.nome AS grupo_carro,
+    a1.nome AS agencia_retirada,
+    a2.nome AS agencia_devolucao,
+    ag.retirada,
+    ag.devolucao,
+    ag.status
+FROM Agendamento ag
+JOIN Usuario u ON u.id = ag.id_usuario
+JOIN Grupo_carro g ON g.id = ag.id_grupo_carro
+JOIN Agencias a1 ON a1.id = ag.id_agencia_retirada
+JOIN Agencias a2 ON a2.id = ag.id_agencia_devolucao;
+
+SELECT
+    c.id AS contrato,
+    u.nome AS cliente,
+    v.placa,
+    v.marca,
+    v.modelo,
+    f.nome AS motorista,
+    c.data_inicio,
+    c.data_fim,
+    c.status,
+    c.termos
+FROM Contrato c
+JOIN Agendamento a ON a.id = c.id_agendamento
+JOIN Usuario u ON u.id = a.id_usuario
+JOIN Veiculo v ON v.id = c.id_veiculo
+LEFT JOIN Funcionario f ON f.id = c.id_func_motorista;
+
 
 SELECT
     V.placa,
@@ -41,40 +58,47 @@ LEFT JOIN Grupo_carro GC ON V.id_grupo_carro = GC.id
 WHERE V.status IN ('Livre', 'Manutenção')
 ORDER BY C.data_checklist ASC;
 
-SELECT
-    A.nome AS Agencia_Localizacao,
-    GC.nome AS Grupo,
-    COUNT(V.id) AS Carros_Alocados
-FROM Veiculo V
-JOIN Agencias A ON V.id_agencia = A.id
-JOIN Grupo_carro GC ON V.id_grupo_carro = GC.id
-WHERE V.status IN ('Alugado', 'Reservado')
-GROUP BY A.nome, GC.nome
-ORDER BY Carros_Alocados DESC;
+SELECT 
+    v.id,
+    v.placa,
+    v.marca,
+    v.modelo,
+    v.status
+FROM Veiculo v
+WHERE v.id NOT IN (
+    SELECT c.id_veiculo
+    FROM Contrato c
+    WHERE ('2026-01-11' BETWEEN c.data_inicio AND c.data_fim)
+       OR ('2026-01-14' BETWEEN c.data_inicio AND c.data_fim)
+)
+AND v.status = 'Livre';
+
+SELECT 
+    v.id,
+    v.placa,
+    v.marca,
+    v.modelo,
+    c.data_inicio,
+    c.data_fim
+FROM Veiculo v
+JOIN Contrato c ON c.id_veiculo = v.id
+WHERE ('2026-01-11' BETWEEN c.data_inicio AND c.data_fim)
+   OR ('2026-01-14' BETWEEN c.data_inicio AND c.data_fim);
 
 SELECT
-    U.nome AS Cliente,
-    U.cpf AS CPF_Cliente,
-    A.id AS ID_Agendamento,
-    C.id AS ID_Contrato,
-    V.marca AS Marca,
-    V.modelo AS Modelo,
-    V.placa AS Placa,
-    GC.nome AS Grupo_Carro,
-    AR.nome AS Agencia_Retirada,
-    AD.nome AS Agencia_Devolucao,
-    C.data_inicio AS Data_Inicio_Contrato,
-    C.data_fim AS Data_Fim_Contrato,
-    C.periodo AS Dias_Aluguel,
-    P.valor AS Valor_Total_Pago,
-    P.forma AS Forma_Pagamento,
-    P.status AS Status_Pagamento
-FROM Usuario U
-INNER JOIN Agendamento A ON U.id = A.id_usuario
-INNER JOIN Contrato C ON A.id = C.id_agendamento
-INNER JOIN Veiculo V ON C.id_veiculo = V.id
-INNER JOIN Grupo_carro GC ON V.id_grupo_carro = GC.id
-INNER JOIN Agencias AR ON A.id_agencia_retirada = AR.id 
-INNER JOIN Agencias AD ON A.id_agencia_devolucao = AD.id 
-INNER JOIN Pagamento P ON C.id = P.id_contrato
-WHERE U.nome = 'Alice Neves';
+    c.id AS contrato,
+    u.nome AS cliente,
+    v.placa,
+    v.marca,
+    v.modelo,
+    f.nome AS motorista,
+    c.data_inicio,
+    c.data_fim,
+    c.status,
+    c.termos
+FROM Contrato c
+JOIN Agendamento a ON a.id = c.id_agendamento
+JOIN Usuario u ON u.id = a.id_usuario
+JOIN Veiculo v ON v.id = c.id_veiculo
+LEFT JOIN Funcionario f ON f.id = c.id_func_motorista;
+
