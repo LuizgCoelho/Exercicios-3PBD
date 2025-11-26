@@ -1,3 +1,5 @@
+CREATE DATABASE falls_car;
+USE falls_car;
 
 CREATE TABLE Grupo_carro (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -13,12 +15,11 @@ CREATE TABLE Agencias (
 );
 
 CREATE TABLE Horarios (
-    id INT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     id_agencia INT,
     hora_inicio TIME,
     hora_fim TIME,
     dia_semana VARCHAR(10),
-    PRIMARY KEY (id),
     FOREIGN KEY (id_agencia) REFERENCES Agencias(id)
 );
 
@@ -28,7 +29,8 @@ CREATE TABLE Pessoa_juridica (
     nome_empresa VARCHAR(150) NOT NULL,
     cnpj VARCHAR(14) UNIQUE NOT NULL,
     telefone_comercial VARCHAR(20),
-    registro_estadual VARCHAR(50)
+    registro_estadual VARCHAR(50),
+    FOREIGN KEY (id_cliente) REFERENCES Usuario(id)
 );
 
 CREATE TABLE Usuario (
