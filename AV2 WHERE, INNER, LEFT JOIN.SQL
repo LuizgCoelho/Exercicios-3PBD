@@ -36,3 +36,30 @@ JOIN Grupo_carro GC ON V.id_grupo_carro = GC.id
 WHERE V.status IN ('Alugado', 'Reservado')
 GROUP BY A.nome, GC.nome
 ORDER BY Carros_Alocados DESC;
+
+SELECT
+    U.nome AS Cliente,
+    U.cpf AS CPF_Cliente,
+    A.id AS ID_Agendamento,
+    C.id AS ID_Contrato,
+    V.marca AS Marca,
+    V.modelo AS Modelo,
+    V.placa AS Placa,
+    GC.nome AS Grupo_Carro,
+    AR.nome AS Agencia_Retirada,
+    AD.nome AS Agencia_Devolucao,
+    C.data_inicio AS Data_Inicio_Contrato,
+    C.data_fim AS Data_Fim_Contrato,
+    C.periodo AS Dias_Aluguel,
+    P.valor AS Valor_Total_Pago,
+    P.forma AS Forma_Pagamento,
+    P.status AS Status_Pagamento
+FROM Usuario U
+INNER JOIN Agendamento A ON U.id = A.id_usuario
+INNER JOIN Contrato C ON A.id = C.id_agendamento
+INNER JOIN Veiculo V ON C.id_veiculo = V.id
+INNER JOIN Grupo_carro GC ON V.id_grupo_carro = GC.id
+INNER JOIN Agencias AR ON A.id_agencia_retirada = AR.id -- Agência de Retirada
+INNER JOIN Agencias AD ON A.id_agencia_devolucao = AD.id -- Agência de Devolução
+INNER JOIN Pagamento P ON C.id = P.id_contrato
+WHERE U.nome = 'Alice Neves';
