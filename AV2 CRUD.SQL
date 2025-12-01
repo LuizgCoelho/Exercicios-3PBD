@@ -65,7 +65,7 @@ WHERE id = 2;
 INSERT INTO Veiculo (id_agencia, id_grupo_carro, placa, marca, modelo, diaria, especificacoes, km, tipo, status) VALUES
 (1, 1, 'JHK1D11', 'Hyundai', 'HB20', 90.00, '1.0, completo', 0, 'Hatch', 'Livre');
 
--- Inserir um novo Checklist para o veículo (Veículo ID 4, Funcionario ID 4)
+-- Inserir um novo Checklist para o veículo
 INSERT INTO Checklist (id_veiculo, id_funcionario, tem_seguro, data_checklist, observacoes) VALUES
 (4, 4, TRUE, NOW(), 'Veículo novo, tudo OK.');
 
