@@ -130,6 +130,8 @@ CREATE TABLE Relatorio (
     data_criacao DATETIME
 );
 
+-- FUNCIONALIDADE DROP
+
 DROP TABLE Relatorio;
 DROP TABLE Pagamento;
 
