@@ -1,7 +1,3 @@
-/* ============================
-   POPULAÇÃO DO BANCO
-   ============================ */
-
 INSERT INTO Grupo_carro (nome, descricao) VALUES
 ('Econômico', 'Carros 1.0 sem ar'),
 ('Intermediário', 'Carros 1.6 com ar'),
@@ -56,61 +52,3 @@ INSERT INTO Pagamento (id_contrato, forma, data, status, valor, nota_fiscal) VAL
 INSERT INTO Relatorio (observacoes, data_criacao) VALUES
 ('Relatório mensal de movimentação', NOW()),
 ('Relatório de manutenção preventiva', NOW());
-
-
-/* ============================
-      UPDATES ALEATÓRIOS
-   ============================ */
-
-UPDATE Agencias 
-SET telefone = '11955556666' 
-WHERE id = 1;
-
-UPDATE Veiculo 
-SET modelo = 'Mobi Like' 
-WHERE id = 1;
-
-UPDATE Funcionario 
-SET valor = valor + 300
-WHERE funcao = 'Motorista';
-
-UPDATE Agendamento
-SET status = 'Concluído'
-WHERE id = 1;
-
-UPDATE Veiculo
-SET status = 'Em manutenção', km = km + 500
-WHERE id = 3;
-
-UPDATE Pessoa_juridica
-SET registro_estadual = '89.222.441-1'
-WHERE id = 1;
-
-UPDATE Contrato
-SET status = 'Finalizado'
-WHERE id = 1;
-
-UPDATE Pagamento
-SET valor = 2600.00
-WHERE id = 1;
-
-
-/* ============================
-      DELETES ALEATÓRIOS
-   ============================ */
-
-DELETE FROM Horarios
-WHERE id = 4;
-
-DELETE FROM Relatorio
-WHERE id = 1;
-
-DELETE FROM Checklist
-WHERE id = 3;
-
-DELETE FROM Usuario
-WHERE tem_cnh = FALSE;
-
-DELETE FROM Veiculo
-WHERE id = 1veiculo;
-
