@@ -1,3 +1,5 @@
+-- INSERTS NO BANCO
+
 INSERT INTO Grupo_carro (nome, descricao) VALUES
 ('Econômico', 'Carros 1.0 sem ar'),
 ('Intermediário', 'Carros 1.6 com ar'),
@@ -52,3 +54,44 @@ INSERT INTO Pagamento (id_contrato, forma, data, status, valor, nota_fiscal) VAL
 INSERT INTO Relatorio (observacoes, data_criacao) VALUES
 ('Relatório mensal de movimentação', NOW()),
 ('Relatório de manutenção preventiva', NOW());
+
+-- NÃO REALIZAR ESTES UPDATES E DELETES ABAIXO ANTES DE TESTAR OS CODIGOS DO CRUD
+-- FUNCIONALIDADE UPDATE
+
+UPDATE Agencias
+SET telefone = '11955558888'
+WHERE id = 2;
+
+UPDATE Veiculo
+SET status = 'Manutenção'
+WHERE id = 1;
+
+UPDATE Veiculo
+SET diaria = 380.00
+WHERE id = 2;
+
+UPDATE Funcionario
+SET endereco = 'Rua Nova 123'
+WHERE id = 3;
+
+UPDATE Agendamento
+SET status = 'Cancelada'
+WHERE id = 3;
+
+UPDATE Relatorio
+SET observacoes = 'Relatório atualizado com novas informações.'
+WHERE id = 1;
+
+-- FUNCIONALIDADE DELETE
+
+DELETE FROM Agendamento
+WHERE status = 'Cancelada';
+
+DELETE FROM Funcionario
+WHERE id = 3;
+
+DELETE FROM Relatorio
+WHERE id = 2;
+
+DELETE FROM Checklist
+WHERE id = 3;
